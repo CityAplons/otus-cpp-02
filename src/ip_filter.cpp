@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "lex_sort_ip.hpp"
+
 // ("",  '.') -> [""]
 // ("11", '.') -> ["11"]
 // ("..", '.') -> ["", "", ""]
@@ -43,7 +45,7 @@ int main(int argc, char const *argv[])
             ip_pool.push_back(split(v.at(0), '.'));
         }
 
-        // TODO reverse lexicographically sort
+        ip_SortLexicographicallyReversed(ip_pool);
 
         for (std::vector<std::vector<std::string>>::const_iterator ip =
                  ip_pool.cbegin();

@@ -27,7 +27,12 @@ target_include_directories(version
 )
 
 # Describe build targets
+include_directories(include/)
 add_executable(hw2 src/ip_filter.cpp)
+target_sources(hw2
+    PRIVATE
+    src/lex_sort_ip.cpp
+)
 target_link_libraries(hw2 PRIVATE
     version
 )
@@ -45,6 +50,7 @@ add_unit_test(test/test_custom_tie.cpp "") # training task
 
 # Packaging
 option(MAKE_PACKAGE "Add 'package' and 'package_source' build targets for packages" ON)
-if (MAKE_PACKAGE)
-	add_subdirectory(cmake/packaging)
+
+if(MAKE_PACKAGE)
+    add_subdirectory(cmake/packaging)
 endif()
