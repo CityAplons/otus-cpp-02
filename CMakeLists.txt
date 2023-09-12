@@ -31,7 +31,9 @@ include_directories(include/)
 add_executable(hw2 src/ip_filter.cpp)
 target_sources(hw2
     PRIVATE
-    src/lex_sort_ip.cpp
+    src/io.cpp
+    src/sort.cpp
+    src/filter.cpp
 )
 target_link_libraries(hw2 PRIVATE
     version
