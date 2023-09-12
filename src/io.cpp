@@ -2,11 +2,16 @@
 
 namespace NHomework2
 {
-    void PrintOut(std::vector<std::vector<std::string>> ip_map)
+    void PrintOut(std::vector<std::vector<std::string>> &&ip_map_r)
+    {
+        PrintOut(ip_map_r);
+    }
+
+    void PrintOut(std::vector<std::vector<std::string>> &ip_map_l)
     {
         for (std::vector<std::vector<std::string>>::const_iterator ip =
-                 ip_map.cbegin();
-             ip != ip_map.cend(); ++ip)
+                 ip_map_l.cbegin();
+             ip != ip_map_l.cend(); ++ip)
         {
             for (std::vector<std::string>::const_iterator ip_part = ip->cbegin();
                  ip_part != ip->cend(); ++ip_part)

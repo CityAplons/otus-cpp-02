@@ -25,5 +25,6 @@ namespace NHomework2
     // (".11", '.') -> ["", "11"]
     // ("11.22", '.') -> ["11", "22"]
     std::vector<std::string> Split(const std::string &str, char d);
-    void PrintOut(std::vector<std::vector<std::string>> ip_map);
+    void PrintOut(std::vector<std::vector<std::string>> &ip_map_l);
+    void PrintOut(std::vector<std::vector<std::string>> &&ip_map_r);
 } // namespace NHomework2
