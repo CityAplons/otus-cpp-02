@@ -27,24 +27,35 @@ target_include_directories(version
 )
 
 # Describe build targets
-add_executable(hw2 src/ip_filter.cpp)
-target_link_libraries(hw2 PRIVATE
+include_directories(include/)
+add_executable(ip_filter src/ip_filter.cpp)
+add_library(ip_filter_solution
+    src/io.cpp
+    src/sort.cpp
+    src/filter.cpp
+)
+target_link_libraries(ip_filter PRIVATE
     version
+    ip_filter_solution
 )
 
-set_compile_options(hw2)
+set_compile_options(ip_filter_solution)
+set_compile_options(ip_filter)
 set_compile_options(version)
 
-install(TARGETS hw2
+install(TARGETS ip_filter
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 # Describe unit tests
 enable_testing()
 add_unit_test(test/test_custom_tie.cpp "") # training task
+add_unit_test(test/test_filter.cpp ip_filter_solution)
+add_unit_test(test/test_sort.cpp ip_filter_solution)
 
 # Packaging
 option(MAKE_PACKAGE "Add 'package' and 'package_source' build targets for packages" ON)
-if (MAKE_PACKAGE)
-	add_subdirectory(cmake/packaging)
+
+if(MAKE_PACKAGE)
+    add_subdirectory(cmake/packaging)
 endif()
