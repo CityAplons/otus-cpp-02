@@ -12,7 +12,7 @@ namespace NHomework2
         FMODE_OR
     } EFilterMode;
 
-    std::vector<std::vector<std::string>> SortByOctetValue(
+    std::vector<std::vector<std::string>> FilterByOctetValue(
         std::vector<std::vector<std::string>> &ip_map,
         std::vector<std::pair<EIpv4Octets, int>> mask,
         EFilterMode mode);

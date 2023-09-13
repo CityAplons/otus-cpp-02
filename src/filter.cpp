@@ -4,12 +4,12 @@
 
 namespace NHomework2
 {
-    std::vector<std::vector<std::string>> SortByOctetValue(
+    std::vector<std::vector<std::string>> FilterByOctetValue(
         std::vector<std::vector<std::string>> &ip_map,
         std::vector<std::pair<EIpv4Octets, int>> mask,
         EFilterMode mode)
     {
-        std::vector<std::vector<std::string>> ret{};
+        std::vector<std::vector<std::string>> ret;
 
         auto CheckOctet = [mask, mode](std::vector<std::string> ip)
         {
@@ -24,7 +24,10 @@ namespace NHomework2
                 std::tie(position, value) = submask;
 
                 if (value < 0 || value > 255)
-                    continue;
+                {
+                    result = false;
+                    break;
+                }
 
                 switch (mode)
                 {

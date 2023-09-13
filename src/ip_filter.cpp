@@ -24,13 +24,13 @@ int main(int argc, char const *argv[])
         PrintOut(ip_pool);
 
         // filter by first byte and output
-        PrintOut(SortByOctetValue(ip_pool, {{FIRST, 1}}, FMODE_OR));
+        PrintOut(FilterByOctetValue(ip_pool, {{FIRST, 1}}, FMODE_OR));
 
         // filter by first and second bytes and output
-        PrintOut(SortByOctetValue(ip_pool, {{FIRST, 46}, {SECOND, 70}}, FMODE_AND));
+        PrintOut(FilterByOctetValue(ip_pool, {{FIRST, 46}, {SECOND, 70}}, FMODE_AND));
 
         // filter by any byte and output
-        PrintOut(SortByOctetValue(ip_pool, {{FIRST, 46}, {SECOND, 46}, {THIRD, 46}, {FOURTH, 46}}, FMODE_OR));
+        PrintOut(FilterByOctetValue(ip_pool, {{FIRST, 46}, {SECOND, 46}, {THIRD, 46}, {FOURTH, 46}}, FMODE_OR));
     }
     catch (const std::exception &e)
     {
