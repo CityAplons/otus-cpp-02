@@ -6,11 +6,12 @@
 
 namespace NHomework2
 {
-    typedef enum FilterMode
+    enum EFilterMode
     {
         FMODE_AND,
         FMODE_OR
-    } EFilterMode;
+    };
+    using NHomework2::EFilterMode;
 
     std::vector<std::array<uint8_t, OCTET_NUM>> FilterByOctetValue(
         std::vector<std::array<uint8_t, OCTET_NUM>> &ip_map,

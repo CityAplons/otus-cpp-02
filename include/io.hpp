@@ -10,14 +10,15 @@
 
 namespace NHomework2
 {
-    typedef enum Ipv4Octets
+    enum EIpv4Octets
     {
         FIRST = 0,
         SECOND,
         THIRD,
         FOURTH,
         OCTET_NUM
-    } EIpv4Octets;
+    };
+    using NHomework2::EIpv4Octets;
 
     // ("",  '.') -> [""]
     // ("11", '.') -> ["11"]
