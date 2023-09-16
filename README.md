@@ -51,7 +51,7 @@ n1.n2.n3.n4
 Макет исходного кода, а также тестовый файл с данными ip_filter.tsv прилагается к материалам
 занятия. Проверить себя можно следующим образом (Linux):
 ```bash
-cat ip_filter.tsv | ./hw2 | md5sum
+cat ip_filter.tsv | ./ip_filter | md5sum
 24e7a7b2270daee89c64d3ca5fb3da1a -
 ```
 

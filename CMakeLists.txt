@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 set(PROJECT_REVISION 1 CACHE INTERNAL "Project revision (CI)")
 project(otus_cpp2
-    VERSION 0.0.${PROJECT_REVISION}
+    VERSION 1.0.${PROJECT_REVISION}
     DESCRIPTION "Otus Cpp Course hwork 2"
     HOMEPAGE_URL "https://github.com/CityAplons/otus-cpp-02"
     LANGUAGES CXX
@@ -46,6 +46,7 @@ set_compile_options(version)
 install(TARGETS ip_filter
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+install(FILES ip_filter.tsv DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 # Describe unit tests
 enable_testing()

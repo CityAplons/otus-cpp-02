@@ -2,17 +2,17 @@
 
 #include "filter.hpp"
 
-std::vector<std::vector<std::string>> testSet{
-    {"1", "2", "1", "1"},
-    {"1", "1", "1", "1"},
-    {"1", "10", "1", "1"},
-    {"1", "1", "2", "1"},
+std::vector<std::array<uint8_t, 4>> testSet{
+    {1, 2, 1, 1},
+    {1, 1, 1, 1},
+    {1, 10, 1, 1},
+    {1, 1, 2, 1},
 };
 
-std::vector<std::vector<std::string>> testBadSet{
-    {"1", "2234", "1", "1"},
-    {"1", "1", "136", "1"},
-    {"1", "-10", "1", "1"},
+std::vector<std::array<uint8_t, 4>> testBadSet{
+    {1, 223, 1, 1},
+    {1, 1, 136, 1},
+    {1, 10, 1, 1},
 };
 
 TEST(TestFilterActual, BasicAssertions)
@@ -25,7 +25,7 @@ TEST(TestFilterActual, BasicAssertions)
     EXPECT_EQ(resultSet.size(), 1);
     for (size_t i = 0; i < OCTET_NUM; ++i)
     {
-        EXPECT_STREQ(resultSet[0][i].c_str(), testSet[2][i].c_str());
+        EXPECT_EQ(resultSet[0][i], testSet[2][i]);
     }
 
     resultSet = FilterByOctetValue(testSet, {{SECOND, 2}, {THIRD, 2}}, FMODE_OR);
@@ -49,11 +49,9 @@ TEST(TestFilterCorner, BasicAssertions)
 
     for (size_t i = 0; i < OCTET_NUM; ++i)
     {
-        EXPECT_STREQ(resultSet[0][i].c_str(), testBadSet[1][i].c_str());
+        EXPECT_EQ(resultSet[0][i], testBadSet[1][i]);
     }
 
-    EXPECT_EQ(FilterByOctetValue(testBadSet, {{SECOND, 2234}}, FMODE_OR).size(), 0);
-    EXPECT_EQ(FilterByOctetValue(testBadSet, {{SECOND, 2234}}, FMODE_AND).size(), 0);
     EXPECT_EQ(FilterByOctetValue(testBadSet, {{}}, FMODE_OR).size(), 0);
     EXPECT_EQ(FilterByOctetValue(testBadSet, {{}}, FMODE_AND).size(), 0);
     EXPECT_EQ(FilterByOctetValue(testBadSet, {{FIRST, -1}}, FMODE_OR).size(), 0);

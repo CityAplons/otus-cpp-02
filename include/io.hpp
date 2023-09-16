@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <array>
 
 namespace NHomework2
 {
@@ -25,6 +26,7 @@ namespace NHomework2
     // (".11", '.') -> ["", "11"]
     // ("11.22", '.') -> ["11", "22"]
     std::vector<std::string> Split(const std::string &str, char d);
-    void PrintOut(std::vector<std::vector<std::string>> &ip_map_l);
-    void PrintOut(std::vector<std::vector<std::string>> &&ip_map_r);
+    std::array<uint8_t, OCTET_NUM> Parse(const std::string &str_ip);
+    void PrintOut(std::vector<std::array<uint8_t, OCTET_NUM>> &ip_map_l);
+    void PrintOut(std::vector<std::array<uint8_t, OCTET_NUM>> &&ip_map_r);
 } // namespace NHomework2

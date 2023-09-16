@@ -4,14 +4,14 @@
 
 namespace NHomework2
 {
-    std::vector<std::vector<std::string>> FilterByOctetValue(
-        std::vector<std::vector<std::string>> &ip_map,
-        std::vector<std::pair<EIpv4Octets, int>> mask,
+    std::vector<std::array<uint8_t, OCTET_NUM>> FilterByOctetValue(
+        std::vector<std::array<uint8_t, OCTET_NUM>> &ip_map,
+        std::vector<std::pair<EIpv4Octets, uint8_t>> mask,
         EFilterMode mode)
     {
-        std::vector<std::vector<std::string>> ret;
+        std::vector<std::array<uint8_t, OCTET_NUM>> ret;
 
-        auto CheckOctet = [mask, mode](std::vector<std::string> ip)
+        auto CheckOctet = [mask, mode](std::array<uint8_t, OCTET_NUM> ip)
         {
             bool result = false;
             if (mode == FMODE_AND)
@@ -23,19 +23,13 @@ namespace NHomework2
                 EIpv4Octets position;
                 std::tie(position, value) = submask;
 
-                if (value < 0 || value > 255)
-                {
-                    result = false;
-                    break;
-                }
-
                 switch (mode)
                 {
                 case FMODE_AND:
-                    result &= std::stoi(ip[position]) == value;
+                    result &= ip[position] == value;
                     break;
                 case FMODE_OR:
-                    result |= std::stoi(ip[position]) == value;
+                    result |= ip[position] == value;
                     break;
                 default:
                     break;
@@ -44,7 +38,7 @@ namespace NHomework2
             return result;
         };
 
-        typedef std::vector<std::vector<std::string>>::iterator TIterator;
+        using TIterator = std::vector<std::array<uint8_t, OCTET_NUM>>::iterator;
         std::vector<TIterator> itList;
         auto running = ip_map.begin(), end = ip_map.end();
         while (running != end)

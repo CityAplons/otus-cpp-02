@@ -2,25 +2,25 @@
 
 namespace NHomework2
 {
-    void PrintOut(std::vector<std::vector<std::string>> &&ip_map_r)
+    void PrintOut(std::vector<std::array<uint8_t, OCTET_NUM>> &&ip_map_r)
     {
         PrintOut(ip_map_r);
     }
 
-    void PrintOut(std::vector<std::vector<std::string>> &ip_map_l)
+    void PrintOut(std::vector<std::array<uint8_t, OCTET_NUM>> &ip_map_l)
     {
-        for (std::vector<std::vector<std::string>>::const_iterator ip =
+        for (std::vector<std::array<uint8_t, OCTET_NUM>>::const_iterator ip =
                  ip_map_l.cbegin();
              ip != ip_map_l.cend(); ++ip)
         {
-            for (std::vector<std::string>::const_iterator ip_part = ip->cbegin();
+            for (std::array<uint8_t, OCTET_NUM>::const_iterator ip_part = ip->cbegin();
                  ip_part != ip->cend(); ++ip_part)
             {
                 if (ip_part != ip->cbegin())
                 {
                     std::cout << ".";
                 }
-                std::cout << *ip_part;
+                std::cout << std::to_string(*ip_part);
             }
             std::cout << std::endl;
         }
@@ -41,6 +41,21 @@ namespace NHomework2
         }
 
         r.push_back(str.substr(start));
+
+        return r;
+    }
+
+    std::array<uint8_t, OCTET_NUM> Parse(const std::string &str_ip)
+    {
+        std::array<uint8_t, OCTET_NUM> r = {};
+
+        auto octets = Split(str_ip, '.');
+        assert(octets.size() == OCTET_NUM);
+
+        for (size_t i = 0; i < OCTET_NUM; ++i)
+        {
+            r[i] = static_cast<uint8_t>(std::stoi(octets[i]));
+        }
 
         return r;
     }

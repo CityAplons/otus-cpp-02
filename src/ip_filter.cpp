@@ -11,12 +11,12 @@ int main(int argc, char const *argv[])
 
     try
     {
-        std::vector<std::vector<std::string>> ip_pool;
+        std::vector<std::array<uint8_t, OCTET_NUM>> ip_pool;
 
         for (std::string line; std::getline(std::cin, line);)
         {
-            std::vector<std::string> v = Split(line, '\t');
-            ip_pool.push_back(Split(v.at(0), '.'));
+            std::string ip = Split(line, '\t').at(0);
+            ip_pool.push_back(Parse(ip));
         }
 
         // reverse lexicographically sort
