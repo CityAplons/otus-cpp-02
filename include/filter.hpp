@@ -6,14 +6,15 @@
 
 namespace NHomework2
 {
-    typedef enum FilterMode
+    enum EFilterMode
     {
         FMODE_AND,
         FMODE_OR
-    } EFilterMode;
+    };
+    using NHomework2::EFilterMode;
 
-    std::vector<std::vector<std::string>> FilterByOctetValue(
-        std::vector<std::vector<std::string>> &ip_map,
-        std::vector<std::pair<EIpv4Octets, int>> mask,
+    std::vector<std::array<uint8_t, OCTET_NUM>> FilterByOctetValue(
+        std::vector<std::array<uint8_t, OCTET_NUM>> &ip_map,
+        std::vector<std::pair<EIpv4Octets, uint8_t>> mask,
         EFilterMode mode);
 } // namespace NHomework2

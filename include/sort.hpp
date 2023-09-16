@@ -1,10 +1,9 @@
 #pragma once
 
-#include <vector>
-#include <string>
+#include "io.hpp"
 
 namespace NHomework2
 {
-    void SortLexicographically(std::vector<std::vector<std::string>> &pool);
-    void SortLexicographicallyReversed(std::vector<std::vector<std::string>> &pool);
+    void SortLexicographically(std::vector<std::array<uint8_t, OCTET_NUM>> &pool);
+    void SortLexicographicallyReversed(std::vector<std::array<uint8_t, OCTET_NUM>> &pool);
 } // namespace NHomework2

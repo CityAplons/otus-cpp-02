@@ -3,11 +3,11 @@
 #include "io.hpp"
 #include "sort.hpp"
 
-std::vector<std::vector<std::string>> testSet{
-    {"1", "2", "1", "1"},
-    {"1", "1", "1", "1"},
-    {"1", "10", "1", "1"},
-    {"1", "1", "2", "1"},
+std::vector<std::array<uint8_t, 4>> testSet{
+    {1, 2, 1, 1},
+    {1, 1, 1, 1},
+    {1, 10, 1, 1},
+    {1, 1, 2, 1},
 };
 
 TEST(TestSortAscending, BasicAssertions)
@@ -26,16 +26,16 @@ TEST(TestSortAscending, BasicAssertions)
         auto prev = *(ip - 1);
 
         // it's just a test :)
-        EXPECT_TRUE(std::stoi(current[FIRST]) >= std::stoi(prev[FIRST]));
-        if (std::stoi(current[FIRST]) == std::stoi(prev[FIRST]))
+        EXPECT_TRUE(current[FIRST] >= prev[FIRST]);
+        if (current[FIRST] == prev[FIRST])
         {
-            EXPECT_TRUE(std::stoi(current[SECOND]) >= std::stoi(prev[SECOND]));
-            if (std::stoi(current[SECOND]) == std::stoi(prev[SECOND]))
+            EXPECT_TRUE(current[SECOND] >= prev[SECOND]);
+            if (current[SECOND] == prev[SECOND])
             {
-                EXPECT_TRUE(std::stoi(current[THIRD]) >= std::stoi(prev[THIRD]));
-                if (std::stoi(current[THIRD]) == std::stoi(prev[THIRD]))
+                EXPECT_TRUE(current[THIRD] >= prev[THIRD]);
+                if (current[THIRD] == prev[THIRD])
                 {
-                    EXPECT_TRUE(std::stoi(current[FOURTH]) >= std::stoi(prev[FOURTH]));
+                    EXPECT_TRUE(current[FOURTH] >= prev[FOURTH]);
                 }
             }
         }
@@ -57,16 +57,16 @@ TEST(TestSortDescending, BasicAssertions)
         auto current = *ip;
         auto prev = *(ip - 1);
 
-        EXPECT_TRUE(std::stoi(current[FIRST]) <= std::stoi(prev[FIRST]));
-        if (std::stoi(current[FIRST]) == std::stoi(prev[FIRST]))
+        EXPECT_TRUE(current[FIRST] <= prev[FIRST]);
+        if (current[FIRST] == prev[FIRST])
         {
-            EXPECT_TRUE(std::stoi(current[SECOND]) <= std::stoi(prev[SECOND]));
-            if (std::stoi(current[SECOND]) == std::stoi(prev[SECOND]))
+            EXPECT_TRUE(current[SECOND] <= prev[SECOND]);
+            if (current[SECOND] == prev[SECOND])
             {
-                EXPECT_TRUE(std::stoi(current[THIRD]) <= std::stoi(prev[THIRD]));
-                if (std::stoi(current[THIRD]) == std::stoi(prev[THIRD]))
+                EXPECT_TRUE(current[THIRD] <= prev[THIRD]);
+                if (current[THIRD] == prev[THIRD])
                 {
-                    EXPECT_TRUE(std::stoi(current[FOURTH]) <= std::stoi(prev[FOURTH]));
+                    EXPECT_TRUE(current[FOURTH] <= prev[FOURTH]);
                 }
             }
         }
